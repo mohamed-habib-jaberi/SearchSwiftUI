@@ -8,9 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
+
+@State var textSearch = ""
+    @State var isSearching = false
+
     var body: some View {
         NavigationView{
             ScrollView {
+
+                HStack{
+                    TextField("Search terms here", text: $textSearch)
+                        //.background(SwiftUI.Color.yellow)
+                        .padding(.leading, 24)
+
+                }.padding()
+                .background(Color(.systemGray5))
+                .padding(.horizontal)
+                .cornerRadius(6)
+                .overlay(
+                    HStack{
+                        Image(systemName: "magnifyingglass")
+                            //.foregroundColor(.green)
+                        Spacer()
+                    }//.background(Color(.red))
+                        .padding(.horizontal, 32)
+                        .foregroundColor(.gray)
+
+                ).transition(.move(edge: .trailing))
+                    .animation(.spring())
 
                 ForEach(0..<20, id: \.self){ num in
                     HStack {
